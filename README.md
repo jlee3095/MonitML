@@ -21,7 +21,7 @@ git commit -m "Use README Boilerplate"
 
 ## Tech Stack
 
-Replace the contents of `README.md` with your project's:
+![Fig 1: Data engineering application pipeline](/images/techstack.png)
 
 - Name
 - Description
