@@ -7,7 +7,7 @@ This repository contains the required files and write-up for Jason Lee's 2020 In
 - [Introduction](#Introduction)
 - [TechStack](#TechStack)
 - [Demo](#Demo)
-- [Build Instructions](#README.md#Build-Instructions)
+- [Build Instructions](#README.md#build-instructions)
 - [Conclusions](#Conclusions)
 
 ## Introduction
