@@ -20,9 +20,13 @@ git commit -m "Use README Boilerplate"
 ```
 
 ## Tech Stack
-
+### Overview
 ![Fig 1: ML monitoring tech stack](/Images/techstack.PNG)
-
+### Infrastructure as code: Terraform
+### Configuration Management: Helm and Kustomize
+### Model Training: KubeFlow
+### Model Serving: Seldon Core 
+### Monitoring/Alerting: Prometheus and Grafana
 - Name
 - Description
 - Installation instructions
