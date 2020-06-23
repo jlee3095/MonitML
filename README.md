@@ -3,7 +3,7 @@
 This repository contains the required files and write-up for Jason Lee's 2020 Insight DevOps project.
 
 ## Table of Contents
-
+[1.0 Introduction](README.md#introduction)
 - [Introduction](#Introduction)
 - [TechStack](#TechStack)
 - [Demo](#Demo)
