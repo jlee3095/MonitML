@@ -4,7 +4,7 @@ This repository contains the required files and write-up for Jason Lee's 2020 In
 
 ## Table of Contents
   - [1.0 Introduction](README.md#introduction)
-  - [2.0 Techstack](#README.md#techstack)
+  - [2.0 Tech stack](README.md#tech-stack)
   - [3.0 Demo](README.md#demo)
   - [4.0 Engineering Challenges](README.md#build-instructions)
   - [5.0 Conclusions](README.md#conclusions)
@@ -19,7 +19,7 @@ git add README.md
 git commit -m "Use README Boilerplate"
 ```
 
-## Techstack
+## Tech Stack
 
 Replace the contents of `README.md` with your project's:
 
