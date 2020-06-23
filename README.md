@@ -21,7 +21,7 @@ git commit -m "Use README Boilerplate"
 
 ## Tech Stack
 
-![Fig 1: Data engineering application pipeline](/images/techstack.png)
+![Fig 1: Data engineering application pipeline](/Images/techstack.png)
 
 - Name
 - Description
