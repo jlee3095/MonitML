@@ -3,12 +3,11 @@
 This repository contains the required files and write-up for Jason Lee's 2020 Insight DevOps project.
 
 ## Table of Contents
-[1.0 Introduction](README.md#introduction)
-- [Introduction](#Introduction)
-- [TechStack](#TechStack)
-- [Demo](#Demo)
-- [Build Instructions](#README.md#build-instructions)
-- [Conclusions](#Conclusions)
+  - [1.0 Introduction](README.md#introduction)
+  - [2.0 Tech Stack](#README.md#tech-stack)
+  - [3.0 Demo](README.md#demo)
+  - [4.0 Engineering Challenges](README.md#build-instructions)
+  - [5.0 Conclusions](README.md#conclusions)
 
 ## Introduction
 
@@ -20,7 +19,7 @@ git add README.md
 git commit -m "Use README Boilerplate"
 ```
 
-## TechStack
+## Tech Stack
 
 Replace the contents of `README.md` with your project's:
 
