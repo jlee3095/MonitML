@@ -33,6 +33,7 @@ The metrics can be visualized using Grafana. Metrics that are monitored for this
 ![Fig 2: Dashboard](/Images/dashboard.PNG)
 
 ![Fig 3: Alerting](/Images/alert.PNG)
+
 ## Build Instructions
 ### Prerequisites
 The following software must be installed into your local environment:
@@ -43,7 +44,6 @@ The following software must be installed into your local environment:
 * Kubectl
 
 ### Clone the repository:
-
 `git clone https://github.com/jlee3095/MonitML.git`
 
 ### Build Infrastructure using Terraform: 
@@ -110,13 +110,13 @@ kubectl port-forward svc/seldon-core-analytics-grafana 3000:80 -n kubeflow &
 kubectl port-forward svc/seldon-core-analytics-prometheus-alertmanager 3005:80 -n kubeflow &
 ```
 
-### Sending Inference Requests to Inference Server:
+### Sending Requests to Inference Server:
 The bash script sends 60 requests to inference server
 ```sh
 kubectl port-forward $(kubectl get pods -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].metadata.name}') -n istio-system 8004:80
 PATH/MonitML/script
 ```
-### Regards to creating custom metrics:
+### In Regards to creating custom metrics:
 Custom metrics can be configured in python before wrapping with s2i. For examples see the model folder. In order to create a proper file you will need:
 * Download s2i
 * Modelfile.py
