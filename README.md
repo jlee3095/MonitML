@@ -126,7 +126,7 @@ Custom metrics can be configured in python before wrapping with s2i. For example
 * requirements.txt file
 * You must use s2i/seldonio/python3:1.1+ to be able to have a endpoint with custom metrics that can be exposed to prometheus 
 ```sh
-# The python, env, requirments files must be in the same folder, cd to that folder
+# The python, env, requirements files must be in the same folder, cd to that folder
 s2i build -E environment_rest . seldonio/seldon-core-s2i-python3:1.1.0 [MODELNAME]:[TAG]
 
 # To test model use contract.json
