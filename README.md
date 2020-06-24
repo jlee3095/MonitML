@@ -46,19 +46,20 @@ The following software must be installed into your local environment:
 
 `git clone https://github.com/jlee3095/MonitML.git`
 
-### Build Infrastructure using Terraform 
+### Build Infrastructure using Terraform: 
 ```sh
+aws configure #ADD access key, secret access key, region(eg. us-east-2), and output formt (eg. json) when prompted
 cd ./MonitML/terraform
 terraform init
 terraform apply #Type in "yes" when asked 
 aws eks --region us-east-2 update-kubeconfig --name training-eks #Default name is training-eks and region is us-east-2. These can be changed in terraform files.
 ```
-### Configure KubeFlow
+### Configure KubeFlow:
  ```sh
 cd ~/MonitML
 kfctl apply -V -f [INSERT PATH]/MonitML/kubeflow/kfctl_aws.v1.0.2_terraform.yaml
 ```
-### Configure Seldon Core, Prometheus, and Grafana
+### Configure Seldon Core, Prometheus, and Grafana:
 Install Seldon Core Operator
 ```sh
 helm install seldon-core seldon-core-operator \
@@ -100,7 +101,7 @@ EOF
 kubectl apply -f [INSERTPATH]/canary.json -n seldon
 ```
 
-### Accessing Prometheus/Grafana/AlertManager 
+### Accessing Prometheus/Grafana/AlertManager: 
 Access by going to localhost:300X where X is 0,1,5 depending on what service you would like to access
 grafana login username:admin password:password
 ```sh
@@ -109,13 +110,13 @@ kubectl port-forward svc/seldon-core-analytics-grafana 3000:80 -n kubeflow &
 kubectl port-forward svc/seldon-core-analytics-prometheus-alertmanager 3005:80 -n kubeflow &
 ```
 
-### Sending Inference Requests to Inference Server
+### Sending Inference Requests to Inference Server:
 The bash script sends 60 requests to inference server
 ```sh
 kubectl port-forward $(kubectl get pods -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].metadata.name}') -n istio-system 8004:80
 PATH/MonitML/script
 ```
-### Regards to creating custom metrics
+### Regards to creating custom metrics:
 Custom metrics can be configured in python before wrapping with s2i. For examples see the model folder. In order to create a proper file you will need:
 * Download s2i
 * Modelfile.py
