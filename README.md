@@ -117,11 +117,11 @@ PATH/MonitML/script
 ```
 ### Regards to creating custom metrics
 Custom metrics can be configured in python before wrapping with s2i. For examples see the model folder. In order to create a proper file you will need:
-*Download s2i
-*Modelfile.py
-*environment file
-*requirements.txt file
-*You must use s2i/seldonio/python3:1.1+ to be able to have a endpoint with custom metrics that can be exposed to prometheus 
+* Download s2i
+* Modelfile.py
+* environment file
+* requirements.txt file
+* You must use s2i/seldonio/python3:1.1+ to be able to have a endpoint with custom metrics that can be exposed to prometheus 
 ```sh
 s2i -E s2i/seldonio/python3:1.1.0 modelfile
 ```
