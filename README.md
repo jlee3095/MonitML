@@ -29,21 +29,23 @@ The tech stack is built on top of Kubernetes (Amazon EKS). The infrastructure is
 For this demo, two different models that predict housing prices are deployed via canary method(75/25) using Seldon Core. One of the models has purposefully bad performance as the model it outputs a prediction of $100, regardless of the input. Since a housing price of $100 dollars is infeasible, a Slack notification is sent through Prometheus AlertManager. AlertManager is triggered to send an alert if the average housing price is less than $100,000.
 
 The metrics can be visualized using Grafana. Metrics that are monitored for this demo include min/max/average prediction, operations per second for each model, and latencies for each model.
+
 ![Fig 2: Dashboard](/Images/dashboard.PNG)
+
 ![Fig 3: Alerting](/Images/alert.PNG)
 ## Build Instructions
-###Prerequisites
+### Prerequisites
 The following software must be installed into your local environment:
-Terraform
-Helm
-AWS CLI
-Kfctl
-Kubectl
+* Terraform
+* Helm
+* AWS CLI
+* Kfctl
+* Kubectl
 
 
 
 ```sh
-git clone -m "Use README Boilerplate"
+* git clone -m "Use README Boilerplate"
 ```
 
 
