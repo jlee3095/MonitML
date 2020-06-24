@@ -42,12 +42,88 @@ The following software must be installed into your local environment:
 * Kfctl
 * Kubectl
 
+### Clone the repository:
 
+`git clone https://github.com/jlee3095/MonitML.git`
 
+### Build Infrastructure using Terraform 
 ```sh
-* git clone -m "Use README Boilerplate"
+cd ./MonitML/terraform
+terraform init
+terraform apply #Type in "yes" when asked 
+aws eks --region us-east-2 update-kubeconfig --name training-eks #Default name is training-eks and region is us-east-2. These can be changed in terraform files.
+```
+### Configure KubeFlow
+ ```sh
+cd ~/MonitML
+kfctl apply -V -f [INSERT PATH]/MonitML/kubeflow/kfctl_aws.v1.0.2_terraform.yaml
+```
+### Configure Seldon Core, Prometheus, and Grafana
+Install Seldon Core Operator
+```sh
+helm install seldon-core seldon-core-operator \
+    --repo https://storage.googleapis.com/seldon-charts \
+    --set usageMetrics.enabled=true \
+    --set istio.enabled=true \
+    --set istio.gateway=kubeflow-gateway \
+    --namespace kubeflow
+```
+Install Seldon Core Grafana/Prometheus
+```sh
+helm install seldon-core-analytics [INSERT PATH]/MonitML/seldon-core-analytics-orig \
+   --repo https://storage.googleapis.com/seldon-charts \
+   --set alertmanager.config.enabled=true \
+   --namespace kubeflow
+```
+Create a Canary Deployment that can be accessed by istio ingressgateway
+```sh
+kubectl create namespace seldon
+
+cat <<EOF | kubectl create -n seldon -f - 
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: kubeflow-gateway
+  namespace: seldon
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - '*'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+EOF
+
+kubectl apply -f [INSERTPATH]/canary.json -n seldon
 ```
 
+### Accessing Prometheus/Grafana/AlertManager 
+Access by going to localhost:300X where X is 0,1,5 depending on what service you would like to access
+grafana login username:admin password:password
+```sh
+kubectl port-forward svc/seldon-core-analytics-prometheus-seldon 3001:80 -n kubeflow &
+kubectl port-forward svc/seldon-core-analytics-grafana 3000:80 -n kubeflow &
+kubectl port-forward svc/seldon-core-analytics-prometheus-alertmanager 3005:80 -n kubeflow &
+```
 
+### Sending Inference Requests to Inference Server
+The bash script sends 60 requests to inference server
+```sh
+kubectl port-forward $(kubectl get pods -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].metadata.name}') -n istio-system 8004:80
+PATH/MonitML/script
+```
+### Regards to creating custom metrics
+Custom metrics can be configured in python before wrapping with s2i. For examples see the model folder. In order to create a proper file you will need:
+*Download s2i
+*Modelfile.py
+*environment file
+*requirements.txt file
+*You must use s2i/seldonio/python3:1.1+ to be able to have a endpoint with custom metrics that can be exposed to prometheus 
+```sh
+s2i -E s2i/seldonio/python3:1.1.0 modelfile
+```
 
 ## Conclusions
