@@ -1,0 +1,85 @@
+{
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "kind": "SeldonDeployment",
+    "metadata": {
+        "labels": {
+            "app": "seldon"
+        },
+        "name": "housing"
+    },
+    "spec": {
+        "annotations": {
+            "project_name": "housing"
+        },
+        "name": "housing",
+        "predictors": [
+            {
+                "componentSpecs": [{
+                    "spec": {
+                        "containers": [
+                            {
+                                "image": "jlee3621/housingmodel:0.1",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "sklearnhousing",
+                                "resources": {
+                                    "requests": {
+                                        "memory": "1Mi"
+                                    }
+                                }
+                            }
+                        ],
+                        "terminationGracePeriodSeconds": 1
+                    }
+                }],
+                "graph": {
+                    "children": [],
+                    "name": "sklearnhousing",
+                    "endpoint": {
+                        "type" : "REST"
+                    },
+                    "type": "MODEL"
+                },
+                "name": "sklearnhousing-predictor",
+                "replicas": 1,
+		"labels":{
+		    "version":"v1"
+		},
+		"traffic": 75
+            },
+            {
+                "componentSpecs": [{
+                    "spec": {
+                        "containers": [
+                            {
+                                "image": "jlee3621/model-with-metrics-rest:0.1",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "housingbad",
+                                "resources": {
+                                    "requests": {
+                                        "memory": "1Mi"
+                                    }
+                                }
+                            }
+                        ],
+                        "terminationGracePeriodSeconds": 1
+                    }
+                }],
+                "graph": {
+                    "children": [],
+                    "name": "housingbad",
+                    "endpoint": {
+                        "type" : "REST"
+                    },
+                    "type": "MODEL"
+                },
+                "name": "housingbad",
+                "replicas": 1,
+		"labels":{
+		    "version":"v2"
+		},
+		"traffic": 25
+            }
+	    
+        ]
+    }
+}

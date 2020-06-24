@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+for i in {1..60}
+do
+   a=$(($RANDOM % 10))
+   b=$(($RANDOM % 10))
+   c=$(($RANDOM % 10))
+   d=$(($RANDOM % 10))
+   e=$(($RANDOM % 10))
+   f=$(($RANDOM % 10))
+   echo '{"data": {"ndarray":[["'$a'", "'$b'", "'$c'","'$d'",,"'$e'",,"'$f'"]]}}'
+   sleep 1 && curl -s -d '{"data": {"ndarray":[["'$a'", "'$b'", "'$c'", "'$d'", "'$e'", "'$f'"]]}}'    -X POST http://localhost:8004/seldon/seldon/housing/api/v1.0/predictions    -H "Content-Type: application/json"
+done
