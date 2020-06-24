@@ -1,5 +1,3 @@
-
-
 class ModelWithMetrics(object):
 
     def __init__(self):
@@ -7,11 +5,12 @@ class ModelWithMetrics(object):
 
     def predict(self,X,features_names):
         print("Predict called")
+        self.predict_=100
         return X
 
     def metrics(self):
         return [
-            {"type":"COUNTER","key":"mycounter","value":1}, # a counter which will increase by the given value
-            {"type":"GAUGE","key":"mygauge","value":100}, # a gauge which will be set to given value
-            {"type":"TIMER","key":"mytimer","value":20.2}, # a timer which will add sum and count metrics - assumed millisecs
+            {"type":"COUNTER","key":"mycounter","value":self.predict_}, # a counter which will increase by the given va$            
+            {"type":"GAUGE","key":"mygauge","value": self.predict_}, # a gauge which will be set to given value
+            {"type":"TIMER","key":"mytimer","value":20.2}, # a timer which will add sum and count metrics - assumed mil$            
             ]
