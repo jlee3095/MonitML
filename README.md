@@ -119,13 +119,25 @@ PATH/MonitML/script
 ### In regards to creating custom metrics:
 Custom metrics can be configured in python before wrapping with s2i. For examples see the model folder. In order to create a proper file you will need:
 * Download s2i
+* pip install seldon-core
+* Download Docker
 * Modelfile.py
 * environment file
 * requirements.txt file
 * You must use s2i/seldonio/python3:1.1+ to be able to have a endpoint with custom metrics that can be exposed to prometheus 
 ```sh
-# The python, env, requirments files must be in the same folder
-s2i -E s2i/seldonio/python3:1.1.0 modelfile
+# The python, env, requirments files must be in the same folder, cd to that folder
+s2i build -E environment_rest . seldonio/seldon-core-s2i-python3:1.1.0 [MODELNAME]:[TAG]
+
+# To test model use contract.json
+docker run -d --rm -p 5000:5000 [MODELNAME]:[TAG]
+seldon-core-tester contract.json 0.0.0.0 5000 -p
+
+# Add the image to your docker hub, ADD image to seldon deployment file(in this case canary.json) to deploy to seldon (eg. image: yourhubusername/[MODELNAME]:[TAG])
+docker image ls
+docker tag [IMAGE NUMBER] yourhubusername/[MODELNAME]:[TAG]
+docker login --username=yourhubusername
+docker push yourhubusername/[MODELNAME]:[TAG]
 ```
 
 ## Conclusions
