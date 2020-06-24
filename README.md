@@ -49,14 +49,14 @@ The following software must be installed into your local environment:
 ### Build Infrastructure using Terraform: 
 ```sh
 aws configure #ADD access key, secret access key, region(eg. us-east-2), and output formt (eg. json) when prompted
-cd ./MonitML/terraform
+cd [PATH]/MonitML/terraform
 terraform init
 terraform apply #Type in "yes" when asked 
 aws eks --region us-east-2 update-kubeconfig --name training-eks #Default name is training-eks and region is us-east-2. These can be changed in terraform files.
 ```
 ### Configure KubeFlow:
  ```sh
-cd ~/MonitML
+cd [PATH]/MonitML
 kfctl apply -V -f [INSERT PATH]/MonitML/kubeflow/kfctl_aws.v1.0.2_terraform.yaml
 ```
 ### Configure Seldon Core, Prometheus, and Grafana:
