@@ -38,7 +38,8 @@ git commit -m "Use README Boilerplate"
 Feel free to remove any sections that aren't applicable to your project.
 
 ## Demo
-
+![Fig 2: Dashboard](/Images/dashboard.PNG)
+![Fig 3: Alerting](/Images/alert.PNG)
 ## Build Instructions
 
 
