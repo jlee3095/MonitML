@@ -7,7 +7,7 @@ This repository contains the required files and write-up for Jason Lee's 2020 In
   - [2.0 Tech stack](README.md#tech-stack)
   - [3.0 Demo](README.md#demo)
   - [4.0 Build Instructions](README.md#build-instructions)
-  - [5.0 Conclusions](README.md#conclusions)
+
 
 ## Introduction
 Machine Learning models can often have poor performance in production. Possible reasons of poor performing models in production may be attributed to differences between the data(features) used to train the models in development and the data(features) used to serve predictions in production. Furthermore, the model may have been trained on a data set that is completely different to what is found in production, reducing the predictive performance of the model. One other scenario that is possible is that the deployed model worked well in the past but has degraded over time due to changes in the environment. The world is not a static environment and for some use cases, ML models may need to be continuously retrained on newer data to have good predictive performance. In addition operational errors in production may occur due to "buggy" models or something as simple as accidently deploying the wrong model version. All of the described operational and predictive performance faults can decrease the business value of a ML service. 
@@ -140,4 +140,4 @@ docker login --username=yourhubusername
 docker push yourhubusername/[MODELNAME]:[TAG]
 ```
 
-## Conclusions
+
