@@ -116,7 +116,7 @@ The bash script sends 60 requests to inference server
 kubectl port-forward $(kubectl get pods -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].metadata.name}') -n istio-system 8004:80
 PATH/MonitML/script
 ```
-### In Regards to creating custom metrics:
+### In regards to creating custom metrics:
 Custom metrics can be configured in python before wrapping with s2i. For examples see the model folder. In order to create a proper file you will need:
 * Download s2i
 * Modelfile.py
@@ -124,6 +124,7 @@ Custom metrics can be configured in python before wrapping with s2i. For example
 * requirements.txt file
 * You must use s2i/seldonio/python3:1.1+ to be able to have a endpoint with custom metrics that can be exposed to prometheus 
 ```sh
+# The python, env, requirments files must be in the same folder
 s2i -E s2i/seldonio/python3:1.1.0 modelfile
 ```
 
